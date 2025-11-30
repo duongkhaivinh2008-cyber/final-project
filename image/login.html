@@ -1,33 +1,298 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
-     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-</head><body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">Phone Store>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Trang Chủ</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Iphone</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Samsung</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Anroid</a>
-        </li>
-      </ul>
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng Nhập - Phone Store Giáng Sinh</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* ===== RESET CẬP MỘC ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* ===== NỀN TỤC ===== */
+        body {
+            font-family: 'Arial', sans-serif;
+            /* Gradient nền: xanh lá - xanh lá sáng - đỏ Giáng Sinh */
+            background: linear-gradient(135deg, #1a472a 0%, #2d5a3d 50%, #c41e3a 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* ===== HIỆU ỨNG TUYẾT RƠI ===== */
+        .snowflake {
+            position: fixed;
+            top: -10px;
+            z-index: 1;
+            user-select: none;
+            cursor: default;
+            animation: snowfall linear infinite;
+            opacity: 0.8;
+            font-size: 1.5em;
+        }
+
+        @keyframes snowfall {
+            to {
+                /* Tuyết rơi xuống và lệch sang phải */
+                transform: translateY(100vh) translateX(100px);
+            }
+        }
+
+        /* ===== HỘP ĐĂNG NHẬP CHÍNH ===== */
+        .login-container {
+            background: rgba(255, 255, 255, 0.95); /* Nền trắng nhạt, trong suốt */
+            border-radius: 20px; /* Bo tròn góc */
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3); /* Bóng đổ */
+            padding: 50px 40px; /* Khoảng cách bên trong */
+            max-width: 450px; /* Chiều rộng tối đa */
+            width: 100%; /* Đáp ứng với màn hình */
+            position: relative;
+            z-index: 10;
+            border: 3px solid #c41e3a; /* Viền đỏ Giáng Sinh */
+        }
+
+        /* ===== PHẦN LOGO VÀ TIÊU ĐỀ ===== */
+        .logo-section {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo-title {
+            font-size: 2.5em;
+            color: #c41e3a; /* Màu đỏ */
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo-subtitle {
+            font-size: 0.9em;
+            color: #1a472a; /* Màu xanh lá */
+            font-style: italic;
+        }
+
+        .decorative-line {
+            width: 100%;
+            height: 3px;
+            /* Đường trang trí gradient xanh-đỏ-xanh */
+            background: linear-gradient(90deg, #1a472a, #c41e3a, #1a472a);
+            margin: 20px 0;
+            border-radius: 2px;
+        }
+
+        /* ===== FORM ĐẦU VÀO ===== */
+        .form-group {
+            margin-bottom: 20px; /* Khoảng cách giữa các trường */
+        }
+
+        .form-label {
+            color: #1a472a; /* Nhãn màu xanh lá */
+            font-weight: 600; /* Đậm */
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .form-control {
+            border: 2px solid #1a472a; /* Viền xanh lá */
+            border-radius: 10px; /* Bo tròn */
+            padding: 12px 15px; /* Khoảng cách bên trong */
+            font-size: 1em;
+            transition: all 0.3s ease; /* Chuyển động mượt */
+        }
+
+        .form-control:focus {
+            /* Khi click vào: viền đỏ, bóng đỏ */
+            border-color: #c41e3a;
+            box-shadow: 0 0 10px rgba(196, 30, 58, 0.3);
+            outline: none;
+        }
+
+        /* ===== NÚT ĐĂNG NHẬP ===== */
+        .login-btn {
+            width: 100%; /* Chiều rộng toàn bộ */
+            padding: 12px;
+            font-size: 1.1em;
+            font-weight: bold;
+            background: linear-gradient(90deg, #c41e3a, #a01830); /* Gradient đỏ */
+            border: none;
+            border-radius: 10px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(196, 30, 58, 0.3);
+        }
+
+        .login-btn:hover {
+            /* Hiệu ứng khi rê chuột */
+            transform: translateY(-2px); /* Nhô lên */
+            box-shadow: 0 6px 20px rgba(196, 30, 58, 0.4);
+            background: linear-gradient(90deg, #a01830, #c41e3a);
+        }
+
+        .login-btn:active {
+            /* Khi nhấn */
+            transform: translateY(0);
+        }
+
+        /* ===== CHECKBOX GHI NHỚ ===== */
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            gap: 10px; /* Khoảng cách giữa checkbox và text */
+        }
+
+        .checkbox-group input {
+            cursor: pointer;
+            width: 18px;
+            height: 18px;
+            accent-color: #c41e3a; /* Màu checkbox là đỏ */
+        }
+
+        .checkbox-group label {
+            cursor: pointer;
+            color: #1a472a;
+            margin: 0;
+            font-size: 0.95em;
+        }
+
+        /* ===== TRANG TRÍ GÓC ===== */
+        .ornament {
+            position: absolute;
+            font-size: 2em;
+            opacity: 0.1; /* Trong suốt 10% */
+            animation: rotate 10s linear infinite; /* Xoay liên tục */
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .ornament-1 { top: 20px; left: 20px; }
+        .ornament-2 { top: 20px; right: 20px; }
+        .ornament-3 { bottom: 20px; left: 20px; }
+        .ornament-4 { bottom: 20px; right: 20px; }
+
+        .phone-emoji {
+            font-size: 1.2em;
+            margin-right: 5px;
+        }
+
+        /* ===== RESPONSIVE - MÀN HÌNH NHỎ ===== */
+        @media (max-width: 576px) {
+            .login-container {
+                padding: 30px 20px;
+            }
+            .logo-title {
+                font-size: 1.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Khu vực chứa tuyết -->
+    <div id="snowflakes"></div>
+
+    <!-- Hộp đăng nhập chính -->
+    <div class="login-container">
+
+        <!-- Logo cửa hàng -->
+        <div class="logo-section">
+            <div class="logo-title">
+                Phone Store
+            </div>
+            <div class="logo-subtitle">Mùa Giáng Sinh Ưu Đãi</div>
+            <div class="decorative-line"></div>
+        </div>
+
+        <!-- Form đăng nhập -->
+        <form id="loginForm">
+            <!-- Nhập email -->
+            <div class="form-group">
+                <label for="email" class="form-label">Email hoặc Tên Đăng Nhập</label>
+                <input 
+                    type="text" 
+                    id="email" 
+                    class="form-control" 
+                    placeholder="Nhập email hoặc tên đăng nhập..."
+                    required
+                >
+            </div>
+
+            <!-- Nhập mật khẩu -->
+            <div class="form-group">
+                <label for="password" class="form-label">Mật Khẩu</label>
+                <input 
+                    type="password" 
+                    id="password" 
+                    class="form-control" 
+                    placeholder="Nhập mật khẩu..."
+                    required
+                >
+            </div>
+
+            <!-- Checkbox ghi nhớ mật khẩu -->
+            <div class="checkbox-group">
+                <input type="checkbox" id="rememberMe">
+                <label for="rememberMe">Ghi nhớ mật khẩu</label>
+            </div>
+
+            <!-- Nút đăng nhập -->
+            <button type="submit" class="login-btn">
+                ĐĂNG NHẬP VÀO CỬA HÀNG
+            </button>
+        </form>
     </div>
-  </div>
-</nav>
+
+    <!-- JavaScript: Tạo hiệu ứng và xử lý form -->
+    <script>
+        // ===== HIỆU ỨNG TUYẾT RƠI =====
+        const snowflakesContainer = document.getElementById('snowflakes');
+        const snowflakeSymbols = ['*', '+', 'x']; // Các ký tự tuyết
+
+        function createSnowflake() {
+            const snowflake = document.createElement('div'); // Tạo phần tử mới
+            snowflake.textContent = snowflakeSymbols[Math.floor(Math.random() * snowflakeSymbols.length)]; // Chọn ký tự ngẫu nhiên
+            snowflake.classList.add('snowflake'); // Gán class CSS
+            snowflake.style.left = Math.random() * 100 + 'vw'; // Vị trí ngẫu nhiên ngang
+            snowflake.style.animationDuration = (Math.random() * 5 + 10) + 's'; // Thời gian rơi ngẫu nhiên
+            snowflake.style.fontSize = (Math.random() * 1 + 1) + 'em'; // Kích thước ngẫu nhiên
+            snowflakesContainer.appendChild(snowflake); // Thêm vào trang
+
+            setTimeout(() => snowflake.remove(), 15000); // Xóa sau 15 giây
+        }
+
+        // Tạo tuyết mỗi 200ms (tuyết rơi liên tục)
+        setInterval(createSnowflake, 200);
+
+        // ===== XỬ LÝ FORM ĐĂNG NHẬP =====
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // Ngăn không cho form refresh trang
+
+            // Lấy giá trị email và mật khẩu
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            // Kiểm tra nếu cả hai trường không trống
+            if (email && password) {
+                // Chuyển hướng đến trang chủ
+                window.location.href = 'trangchu.html';
+            }
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
