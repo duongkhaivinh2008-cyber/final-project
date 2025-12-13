@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <style>
+    /* ===== PRODUCT DETAIL PAGE STYLES ===== */
+    
+    /* product-header: Phần tiêu đề sản phẩm với nền gradient nhẹ, hiển thị tên và giá */
+    .product-header { background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%); padding: 30px 0; margin-bottom: 40px; }
+    
+    /* product-title: Tiêu đề sản phẩm - màu xanh lá, kích thước lớn, đậm */
+    .product-title { color: #1a472a; font-size: 2.5em; font-weight: bold; margin: 0 0 10px 0; }
+    
+    /* product-price: Giá sản phẩm - màu đỏ nổi bật, kích thước lớn */
+    .product-price { color: #c41e3a; font-size: 1.8em; font-weight: bold; margin: 0; }
+    
+    /* product-container: Container chính - giới hạn độ rộng, canh giữa, padding */
+    .product-container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+    
+    /* product-image: Vùng hiển thị ảnh - canh giữa, thêm shadow để nổi bật */
+    .product-image { text-align: center; margin-bottom: 30px; }
+    .product-image img { max-width: 100%; height: auto; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+    
+    /* specs-section: Phần thông số kỹ thuật - nền trắng, viền đỏ bên trái, padding */
+    .specs-section { background: rgba(255,255,255,0.9); padding: 30px; border-radius: 15px; margin-bottom: 30px; border-left: 5px solid #c41e3a; }
+    .specs-section h3 { color: #1a472a; font-weight: bold; margin-bottom: 20px; border-bottom: 2px solid #c41e3a; padding-bottom: 10px; }
+    
+    /* spec-item: Mỗi dòng thông số - hiển thị label và giá trị cạnh nhau */
+    .spec-item { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #ddd; }
+    .spec-item:last-child { border-bottom: none; }
+    .spec-label { font-weight: 600; color: #1a472a; } /* Nhãn thông số - đậm, màu xanh */
+    .spec-value { color: #666; } /* Giá trị thông số - màu xám nhạt */
+    
+    /* btn-buy: Nút mua - gradient đỏ, hover có animation nhô lên */
+    .btn-buy { background: linear-gradient(90deg, #c41e3a, #a01830); color: white; padding: 15px 40px; border: none; border-radius: 10px; font-size: 1.1em; font-weight: bold; cursor: pointer; transition: all 0.3s ease; }
+    .btn-buy:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(196,30,58,0.4); }
+    
+    /* description: Mô tả sản phẩm - nền xanh nhạt, padding, line-height thoải mái */
+    .description { background: rgba(26,71,42,0.05); padding: 20px; border-radius: 10px; margin-bottom: 30px; line-height: 1.6; color: #333; }
+    
+    /* ===== FOOTER SOCIAL STYLES ===== */
+    .footer { color: #fff; text-align: center; } /* Footer - text trắng, canh giữa */
+    .footer p { margin: 0 0 8px 0; } /* Padding giữa các dòng text */
+    
+    /* socials: Container chứa social links - flexbox, gap 8px, wrap trên mobile */
+    .socials { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+    
+    /* social-link: Mỗi nút social - flexbox, icon + text, nền semi-transparent, hover lift up */
+    .social-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 10px;
+      background: rgba(255,255,255,0.06); /* Nền trắng 6% opacity */
+      border-radius: 8px;
+      color: #fff;
+      text-decoration: none;
+      transition: transform .15s ease, background .15s ease;
+      font-weight: 600;
+    }
+    .social-link img { width: 20px; height: 20px; object-fit: contain; } /* Icon size */
+    .social-link:hover { transform: translateY(-3px); background: rgba(255,255,255,0.12); } /* Hover: nhô lên, nền sáng hơn */
+    
+    /* ===== RESPONSIVE DESIGN ===== */
+    @media (max-width: 480px) {
+      .social-link { padding: 6px 8px; font-size: 14px; } /* Mobile: padding nhỏ hơn */
+      .product-title { font-size: 1.8em; } /* Mobile: tiêu đề nhỏ hơn */
+      .spec-item { flex-direction: column; } /* Mobile: spec label trên, giá trị dưới */
+      .spec-label { margin-bottom: 5px; }
+    }
+  </style>
+</head>
+<body>
+    <!-- Navigation Bar: Thanh menu điều hướng trang -->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="trangchu.html">Phone Store</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="trangchu.html">Trang Chủ</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="apple.html">Apple</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="samsung.html">Samsung</a>
+            </li>
+          </ul>
+          <form class="d-flex" role="search">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+            <button class="btn btn-outline-success" type="submit">Search</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Product Header -->
+    <div class="product-header">
+      <div class="product-container">
+        <h1 class="product-title">iPhone 16</h1>
+        <p class="product-price">Giá: 20.999.000 VND</p>
+        <p class="product-discount" style="color:#a01830; font-weight:700; margin-top:8px;">Ưu đãi Giáng sinh: giảm 20% — Giá sau giảm: 16.799.200 VND</p>
+      </div>
+    </div>
+
+    <!-- Product Details -->
+    <div class="product-container">
+      <!-- Product Image -->
+      <div class="row mb-4">
+        <div class="col-md-6">
+          <div class="product-image">
+            <img src="iphone 17 pro.jpg" alt="iPhone 16">
+          </div>
+        </div>
+        
+        <!-- Product Info & Specs -->
+        <div class="col-md-6">
+          <!-- Description -->
+          <div class="description">
+            <h4 style="color: #1a472a; font-weight: bold; margin-bottom: 10px;">Mô Tả Sản Phẩm</h4>
+            <p>iPhone 16 là phiên bản thế hệ trước với hiệu năng mạnh mẽ, camera tuyệt vời và thiết kế hiện đại. Phù hợp với người dùng muốn trải nghiệm iOS chất lượng cao với mức giá phải chăng hơn.</p>
+          </div>
+
+          <!-- Specifications -->
+          <div class="specs-section">
+            <h3>Thông Số Kỹ Thuật</h3>
+            <div class="spec-item">
+              <span class="spec-label">Màn Hình</span>
+              <span class="spec-value">6.1 inch Super Retina XDR</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">Chip</span>
+              <span class="spec-value">Apple A18</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">RAM / Bộ Nhớ</span>
+              <span class="spec-value">8GB / 256GB-512GB</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">Camera</span>
+              <span class="spec-value">48MP + 12MP / 12MP TrueDepth</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">Pin</span>
+              <span class="spec-value">2800 mAh, sạc 40W</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">Hệ Điều Hành</span>
+              <span class="spec-value">iOS 18</span>
+            </div>
+          </div>
+
+          <!-- Buy Button -->
+          <div style="text-align: center; margin-top: 20px;">
+            <a class="btn-buy" href="camon.html">Mua Ngay</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer p-3" style="background-color: rgba(0, 0, 0, 0.2); margin-top: 60px;">
+      <p>@2025 Phone Store</p>
+      <p>Liên hệ chúng tôi để được hỗ trợ nhanh nhất</p>
+      <div class="socials" style="margin-top:10px;">
+        <a class="social-link" href="#" aria-label="Facebook">
+          <img src="facebook.png" alt="Facebook">
+          <span>Facebook</span>
+        </a>
+        <a class="social-link" href="#" aria-label="Instagram">
+          <img src="instagram.png" alt="Instagram">
+          <span>Instagram</span>
+        </a>
+        <a class="social-link" href="#" aria-label="Twitter">
+          <img src="twitter.png" alt="Twitter">
+          <span>Twitter</span>
+        </a>
+        <a class="social-link" href="#" aria-label="YouTube">
+          <img src="youtube.png" alt="YouTube">
+          <span>YouTube</span>
+        </a>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
