@@ -26,24 +26,7 @@
             overflow: hidden;
         }
 
-        /* ===== HIỆU ỨNG TUYẾT RƠI ===== */
-        .snowflake {
-            position: fixed;
-            top: -10px;
-            z-index: 1;
-            user-select: none;
-            cursor: default;
-            animation: snowfall linear infinite;
-            opacity: 0.8;
-            font-size: 1.5em;
-        }
-
-        @keyframes snowfall {
-            to {
-                /* Tuyết rơi xuống và lệch sang phải */
-                transform: translateY(100vh) translateX(100px);
-            }
-        }
+        /* (Hiệu ứng tuyết đã bị gỡ — giữ style khác nguyên vẹn) */
 
         /* ===== HỘP ĐĂNG NHẬP CHÍNH ===== */
         .login-container {
@@ -202,8 +185,6 @@
     </style>
 </head>
 <body>
-    <!-- Khu vực chứa tuyết -->
-    <div id="snowflakes"></div>
 
     <!-- Hộp đăng nhập chính -->
     <div class="login-container">
@@ -256,26 +237,8 @@
         </form>
     </div>
 
-    <!-- JavaScript: Tạo hiệu ứng và xử lý form -->
     <script>
-        // ===== HIỆU ỨNG TUYẾT RƠI =====
-        const snowflakesContainer = document.getElementById('snowflakes');
-        const snowflakeSymbols = ['*', '+', 'x']; // Các ký tự tuyết
 
-        function createSnowflake() {
-            const snowflake = document.createElement('div'); // Tạo phần tử mới
-            snowflake.textContent = snowflakeSymbols[Math.floor(Math.random() * snowflakeSymbols.length)]; // Chọn ký tự ngẫu nhiên
-            snowflake.classList.add('snowflake'); // Gán class CSS
-            snowflake.style.left = Math.random() * 100 + 'vw'; // Vị trí ngẫu nhiên ngang
-            snowflake.style.animationDuration = (Math.random() * 5 + 10) + 's'; // Thời gian rơi ngẫu nhiên
-            snowflake.style.fontSize = (Math.random() * 1 + 1) + 'em'; // Kích thước ngẫu nhiên
-            snowflakesContainer.appendChild(snowflake); // Thêm vào trang
-
-            setTimeout(() => snowflake.remove(), 15000); // Xóa sau 15 giây
-        }
-
-        // Tạo tuyết mỗi 200ms (tuyết rơi liên tục)
-        setInterval(createSnowflake, 200);
 
         // ===== XỬ LÝ FORM ĐĂNG NHẬP =====
         document.getElementById('loginForm').addEventListener('submit', function(e) {
