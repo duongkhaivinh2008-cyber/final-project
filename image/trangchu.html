@@ -1,28 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>    
+<!--
+  File: trangchu.html
+  Mô tả: Trang chủ liệt kê các sản phẩm nổi bật và chứa thanh điều hướng, carousel ảnh và chân trang.
+  Các chú thích sau giải thích ý nghĩa của các thẻ/thuộc tính chính.
+-->
+<html lang="en"> <!-- lang: ngôn ngữ tài liệu (en = tiếng Anh) -->
+<head>
+  <!-- Link tới file CSS địa phương (trangchu.css). Nếu file không có thuộc tính rel thì trình duyệt có thể không áp dụng; giữ nguyên theo nguồn ban đầu. -->
   <link href="trangchu.css">
+  <!-- Liên kết Bootstrap CSS để sử dụng lớp tiện ích và thành phần (navbar, carousel, card, v.v.) -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 </head>
 <body>
+    <!--
+      Thanh điều hướng (navbar):
+      - class="navbar navbar-expand-lg": sử dụng component navbar của Bootstrap, mở rộng trên kích thước lớn
+      - bg-body-tertiary: lớp nền phụ của Bootstrap (màu nền nhẹ)
+    -->
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="trangchu.html">Phone Store
+  <div class="container-fluid"> <!-- container-fluid: container full-width theo Bootstrap -->
+    <a class="navbar-brand" href="trangchu.html">Phone Store</a> <!-- Thương hiệu / logo: click về trang chủ -->
+    <!-- Nút thu gọn navbar trên thiết bị nhỏ -->
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+      <span class="navbar-toggler-icon"></span> <!-- Icon mặc định do Bootstrap cung cấp -->
     </button>
+
+    <!-- Phần collapse chứa các liên kết điều hướng -->
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0"> <!-- Các mục menu (trái) -->
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="trangchu.html">Trang Chủ</a>
+          <a class="nav-link active" aria-current="page" href="trangchu.html">Trang Chủ</a> <!-- Liên kết trang chủ, active: chỉ mục hiện tại -->
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="apple.html">Apple</a>
+          <a class="nav-link" href="apple.html">Apple</a> <!-- Liên kết danh mục Apple -->
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="samsung.html">Samsung</a>
+          <a class="nav-link" href="samsung.html">Samsung</a> <!-- Liên kết danh mục Samsung -->
         </li>
       </ul>
+      <!-- Form tìm kiếm nhỏ ở góc phải navbar -->
       <form class="d-flex" role="search">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
         <button class="btn btn-outline-success" type="submit">Search</button>
@@ -30,45 +46,51 @@
     </div>
   </div>
 </nav>
+
+<!-- Carousel ảnh tự động: id dùng để điều khiển, data-bs-ride='carousel' bật chế độ slide tự động của Bootstrap -->
 <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
   <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4af3FPdRLC1ACA1zYEd-uj_KC4RaGlin7Cg&s" class="d-block w-100" alt="...">
+    <div class="carousel-item active"> <!-- item đầu tiên cần class active -->
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4af3FPdRLC1ACA1zYEd-uj_KC4RaGlin7Cg&s" class="d-block w-100" alt="..."> <!-- Ảnh full-width -->
     </div>
-    <div class="carousel-item">
+    <div class="carousel-item"> <!-- item thứ hai -->
       <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKBbMroCwhxlxNUD5rGHdE4yuncOPy4fTwBA&s" class="d-block w-100" alt="...">
     </div>
-    <div class="carousel-item">
+    <div class="carousel-item"> <!-- item thứ ba -->
       <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLhToFnopUYwaCqMp8WZI190ygoJtRZIiQRw&s" class="d-block w-100" alt="...">
     </div>
   </div>
+  <!-- Nút điều khiển prev/next cho carousel -->
   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
+    <span class="visually-hidden">Previous</span> <!-- chỉ hiển thị cho hỗ trợ truy cập -->
   </button>
   <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Next</span>
   </button>
+</div>
+
+<!-- Dòng chứa 3 card sản phẩm nổi bật: sử dụng flexbox để căn đều -->
 <div class="d-flex justify-content-around">
-  <div class="card" style="width: 18rem;">
-    <img src="iphone 17 pro.jpg"class="card-img-top" alt="...">
+  <div class="card" style="width: 18rem;"> <!-- card 1: iPhone 17 Pro -->
+    <img src="iphone 17 pro.jpg" class="card-img-top" alt="..."> <!-- ảnh sản phẩm -->
     <div class="card-body">
-      <h5 class="card-title">iphone17pro</h5>
-      <p class="card-text"></p>
-      <a href="iphone17pro.html" class="btn btn-primary">Chi tiết</a>
+      <h5 class="card-title">iphone17pro</h5> <!-- tiêu đề sản phẩm -->
+      <p class="card-text"></p> <!-- mô tả ngắn (hiện rỗng) -->
+      <a href="iphone17pro.html" class="btn btn-primary">Chi tiết</a> <!-- nút dẫn tới trang chi tiết sản phẩm -->
     </div>
   </div>
-  <div class="card" style="width: 18rem;">
-    <img src="galaxy z flip.jpg"class="card-img-top" alt="...">
+  <div class="card" style="width: 18rem;"> <!-- card 2: Galaxy Z Flip -->
+    <img src="galaxy z flip.jpg" class="card-img-top" alt="...">
     <div class="card-body">
       <h5 class="card-title">Galaxy z flip</h5>
       <p class="card-text"></p>
       <a href="galaxyzflip.html" class="btn btn-primary">Chi tiết</a>
     </div>
   </div>
-  <div class="card" style="width: 18rem;">
-    <img src="iphone air.jpg"class="card-img-top" alt="...">
+  <div class="card" style="width: 18rem;"> <!-- card 3: iPhone Air -->
+    <img src="iphone air.jpg" class="card-img-top" alt="...">
     <div class="card-body">
       <h5 class="card-title">Iphone air</h5>
       <p class="card-text"></p>
@@ -77,77 +99,20 @@
   </div>
 </div>
 
-<div bg-primary text-white class=" p-3" style="background-color: rgba(0, 0, 0, 0.3);">        
-    <p>@2025 Phone Store</p>        
-    <P>Liên hệ chúng tôi để được hỗ trợ nhanh nhất</P>
-    <div class="d-flex justify-content-center">
+<!-- Chân trang đơn giản với thông tin liên hệ và icon mạng xã hội -->
+<div class=" p-3" style="background-color: rgba(0, 0, 0, 0.3);">
+    <p>@2025 Phone Store</p> <!-- Copyright/ năm -->
+    <p>Liên hệ chúng tôi để được hỗ trợ nhanh nhất</p>
+    <div class="d-flex justify-content-center"> <!-- icon mạng xã hội căn giữa -->
       <a href="#"><img src="facebook.png" alt="Facebook" width="30" height="30" />Facebook</a>
       <a href="#"><img src="instagram.png" alt="Instagram" width="30" height="30" />Instagram</a>
       <a href="#"><img src="twitter.png" alt="Twitter" width="30" height="30" />Twitter</a>
-      <a href="#"><img src="youtube.png" alt="YouTube" width="30" height="30" />YouTube</a>     
-    </div>      
-</div>        
-</body>        
-</html>    
-         
-    
-         
-    
-         
-    
-         
-    
-         
-    
-         
-    
-         
-    
-         
-    
-         
-    
-         
-    
-         
-    
-         
-    
-         
-    
-         
-    
-         
-    
-         
-    
-         
-    
-         
-    
-         
-    
-         
-    
-         
-    
-         
-    
-         
-    
-         
-    
-         
-    
-         
-    
-         
-    
-         
-    
-         
-    
-         
+      <a href="#"><img src="youtube.png" alt="YouTube" width="30" height="30" />YouTube</a>
+    </div>
+</div>
+
+</body>
+</html>
     
          
     
@@ -204,6 +169,99 @@
          
     
     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+         
+    
+         
+    
+         
+    
+         
+    
+         
+    
+         
+    
+         
+    
+         
+    
+         
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
